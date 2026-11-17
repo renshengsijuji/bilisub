@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>BiliSub 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="head">
+        <span class="logo">译</span>
+        <span class="title">BILISUB</span>
+        <span class="dot" id="dot"></span>
+        <span class="ver" id="ver"></span>
+      </header>
+
+      <div class="engine" id="engine">正在连接本地引擎…</div>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">本地模型</span>
+          <span class="tag" id="modelTag">—</span>
+        </div>
+        <div id="modelList" class="models"></div>
+        <p class="note">
+          模型随安装包预装，插件内不再提供下载。需要其它模型时，见安装包内
+          <code>docs/使用说明.html</code> 的「模型目录与自定义模型」一节。
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">模型自检</span>
+          <span class="tag" id="diagTag">未运行</span>
+        </div>
+        <p class="desc">逐项验证翻译与语音模型能否正常加载并出结果。</p>
+        <button id="diag" class="primary">运行检测</button>
+        <div id="diagResult" class="diag" hidden></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">翻译引擎</span>
+        </div>
+        <div class="field sub">
+          <span class="sub-label">实时</span>
+          <select id="realtimeModel"></select>
+        </div>
+        <div class="field sub">
+          <span class="sub-label">高质量</span>
+          <select id="qualityModel"></select>
+        </div>
+        <div class="field row">
+          <label class="radio"><input type="checkbox" id="useApi" /> 使用自定义 API（OpenAI 兼容）</label>
+        </div>
+        <div class="api" id="apiBox" hidden>
+          <input id="baseUrl" placeholder="https://api.openai.com/v1" />
+          <input id="apiKey" placeholder="API Key" type="password" />
+          <input id="apiModel" placeholder="模型名，如 gpt-4o-mini" />
+        </div>
+        <button id="save" class="ghost">保存选择</button>
+        <div id="saveResult" class="result" hidden></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">模型目录</span>
+        </div>
+        <div class="path" id="modelsDir">—</div>
+        <p class="note">
+          修改目录：编辑安装包内 <code>engine/config.json</code> 的 <code>models_dir</code>，
+          或运行安装包里的模型管理脚本，详见使用说明。
+        </p>
+      </section>
+
+      <footer>全部在本机运行 · 不上传音频与字幕</footer>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>

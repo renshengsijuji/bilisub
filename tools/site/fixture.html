@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>BiliSub Fixture</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0b0c10;
+        color: #ccd;
+        font-family: system-ui, sans-serif;
+      }
+      .stage {
+        position: relative;
+        width: min(90vw, 960px);
+        aspect-ratio: 16 / 9;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      }
+      video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #000;
+      }
+      .ytp-caption-window-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 8%;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .ytp-caption-segment {
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        font-size: 22px;
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+      .hint {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        font-size: 12px;
+        color: #667;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hint">本地测试页：每 3 秒切换一句英文字幕（模拟 YouTube 字幕 DOM）</div>
+    <div class="stage">
+      <video id="v" controls playsinline></video>
+      <div class="ytp-caption-window-container">
+        <span class="ytp-caption-segment" id="cap">Hello everyone, welcome back to the channel.</span>
+      </div>
+    </div>
+    <script>
+      const lines = [
+        "Hello everyone, welcome back to the channel.",
+        "Today we are going to talk about how computers understand human language.",
+        "That's all for today, thanks for watching."
+      ];
+      let i = 0;
+      setInterval(() => {
+        document.getElementById('cap').textContent = lines[i++ % lines.length];
+      }, 3000);
+    </script>
+  </body>
+</html>

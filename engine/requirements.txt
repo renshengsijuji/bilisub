@@ -1,0 +1,6 @@
+websockets>=15
+ctranslate2>=4.5
+sentencepiece>=0.2
+numpy>=2.0
+tokenizers>=0.20
+faster-whisper>=1.1

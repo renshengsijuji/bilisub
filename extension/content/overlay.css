@@ -1,0 +1,316 @@
+/*! BiliSub · 字幕浮层 + 复古未来风控制面板 */
+
+/* ================= 字幕浮层 ================= */
+
+.bs-overlay {
+  position: fixed;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.26em;
+  padding: 0 4% 4.5%;
+  box-sizing: border-box;
+  pointer-events: none;
+  text-align: center;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+
+.bs-overlay.bs-empty {
+  display: none;
+}
+
+.bs-overlay .bs-box {
+  max-width: 94%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.14em;
+  padding: 0.18em 0.7em;
+  background: rgba(4, 6, 8, 0.72);
+  border-left: 2px solid rgba(0, 255, 209, 0.55);
+  border-radius: 2px;
+  line-height: 1.35;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.bs-overlay .bs-box[hidden] {
+  display: none;
+}
+
+.bs-overlay .bs-src {
+  font-size: 0.76em;
+  color: rgba(214, 226, 235, 0.85);
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  letter-spacing: 0.01em;
+}
+
+.bs-overlay .bs-dst {
+  font-size: 1em;
+  font-weight: 600;
+  color: #f2f7fa;
+}
+
+.bs-overlay .bs-src[hidden],
+.bs-overlay .bs-dst[hidden] {
+  display: none;
+}
+
+/* ================= 控制面板 ================= */
+
+#bilisub-root {
+  --bs-cyan: #00ffd1;
+  --bs-magenta: #ff4d8d;
+  --bs-panel: #0b0d12;
+  --bs-line: rgba(0, 255, 209, 0.22);
+  --bs-dim: #5f6d7a;
+  --bs-text: #d7e2ea;
+
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483001;
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, "Microsoft YaHei", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+#bilisub-root * {
+  box-sizing: border-box;
+}
+
+#bilisub-root .bs-fab {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--bs-cyan);
+  border-radius: 4px;
+  background: linear-gradient(160deg, rgba(0, 255, 209, 0.16), rgba(0, 255, 209, 0.02));
+  color: var(--bs-cyan);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(0, 255, 209, 0.25), inset 0 0 12px rgba(0, 255, 209, 0.08);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+#bilisub-root .bs-fab:hover {
+  background: rgba(0, 255, 209, 0.18);
+  box-shadow: 0 0 26px rgba(0, 255, 209, 0.45);
+}
+
+#bilisub-root.bs-open .bs-fab {
+  display: none;
+}
+
+#bilisub-root .bs-panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 286px;
+  background:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 80% at 100% 0%, rgba(0, 255, 209, 0.08), transparent 60%),
+    var(--bs-panel);
+  border: 1px solid var(--bs-line);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 18px 44px rgba(0, 0, 0, 0.65);
+  color: var(--bs-text);
+  overflow: hidden;
+}
+
+#bilisub-root .bs-panel[hidden] {
+  display: none;
+}
+
+#bilisub-root .bs-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 8px 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(0, 255, 209, 0.08), transparent);
+}
+
+#bilisub-root .bs-logo {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--bs-cyan);
+  border-radius: 2px;
+  color: var(--bs-cyan);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#bilisub-root .bs-title {
+  flex: 1;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #e8f6f2;
+}
+
+#bilisub-root .bs-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a5560;
+}
+
+#bilisub-root .bs-dot.bs-ok {
+  background: var(--bs-cyan);
+  box-shadow: 0 0 8px rgba(0, 255, 209, 0.9);
+}
+
+#bilisub-root .bs-dot.bs-err {
+  background: var(--bs-magenta);
+  box-shadow: 0 0 8px rgba(255, 77, 141, 0.9);
+}
+
+#bilisub-root .bs-x {
+  border: 0;
+  background: transparent;
+  color: var(--bs-dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+#bilisub-root .bs-x:hover {
+  color: var(--bs-cyan);
+}
+
+#bilisub-root .bs-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* 模式切换 */
+#bilisub-root .bs-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+#bilisub-root .bs-tab {
+  height: 26px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--bs-dim);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+#bilisub-root .bs-tab:hover {
+  color: var(--bs-text);
+}
+
+#bilisub-root .bs-tab.is-active {
+  border-color: var(--bs-cyan);
+  background: rgba(0, 255, 209, 0.14);
+  color: var(--bs-cyan);
+  box-shadow: inset 0 0 10px rgba(0, 255, 209, 0.12);
+}
+
+/* 表单行 */
+#bilisub-root .bs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  color: var(--bs-dim);
+  text-transform: uppercase;
+}
+
+#bilisub-root .bs-row select {
+  width: 148px;
+  height: 26px;
+  padding: 0 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  background: #0d1016;
+  color: var(--bs-text);
+  font-family: inherit;
+  font-size: 11px;
+  outline: none;
+}
+
+#bilisub-root .bs-row select:focus {
+  border-color: var(--bs-cyan);
+}
+
+#bilisub-root .bs-row input[type="range"] {
+  width: 148px;
+  accent-color: var(--bs-cyan);
+}
+
+#bilisub-root .bs-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--bs-cyan);
+}
+
+#bilisub-root .bs-primary {
+  height: 32px;
+  margin-top: 2px;
+  border: 1px solid var(--bs-cyan);
+  border-radius: 2px;
+  background: rgba(0, 255, 209, 0.12);
+  color: var(--bs-cyan);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+#bilisub-root .bs-primary:hover {
+  background: rgba(0, 255, 209, 0.22);
+  box-shadow: 0 0 16px rgba(0, 255, 209, 0.35);
+}
+
+#bilisub-root .bs-tip {
+  min-height: 15px;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--bs-dim);
+  word-break: break-word;
+}
+
+#bilisub-root .bs-link {
+  border: 0;
+  background: transparent;
+  color: #6e8f8a;
+  font-family: inherit;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+}
+
+#bilisub-root .bs-link:hover {
+  color: var(--bs-cyan);
+  text-decoration: underline;
+}

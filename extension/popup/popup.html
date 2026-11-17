@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>BiliSub</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="head">
+        <span class="logo">译</span>
+        <span class="title">BILISUB</span>
+        <span class="dot" id="dot"></span>
+        <span class="ver" id="ver"></span>
+      </header>
+
+      <div class="engine" id="engine">正在连接本地引擎…</div>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">即时听声翻译</span>
+          <span class="tag" id="audioTag">未运行</span>
+        </div>
+        <p class="desc">识别当前标签页的声音，边说边译，字幕覆盖在画面上。适合没有字幕的视频。</p>
+        <button id="audio" class="primary">开始听声翻译</button>
+        <p class="note" id="audioNote">点这一下同时完成浏览器的抓音授权。</p>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <span class="card-title">字幕浮层</span>
+          <span class="tag" id="ovTag">未启动</span>
+        </div>
+        <p class="desc">读取视频自带字幕（优先）并翻译，双语显示在画面底部。</p>
+        <button id="overlay" class="ghost">在当前页启动</button>
+        <p class="note">也可以在视频页右下角点「译」打开控制台，切换智能 / 字幕 / 听声。</p>
+      </section>
+
+      <div class="links">
+        <button id="options" class="link">引擎与模型设置</button>
+        <span class="kbd">Alt+Shift+S</span>
+      </div>
+
+      <footer>全部在本机运行 · 不上传音频与字幕</footer>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

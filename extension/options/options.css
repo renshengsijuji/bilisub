@@ -1,0 +1,385 @@
+/*! BiliSub 设置页 · 与控制台/工具栏同一套复古未来风 */
+
+:root {
+  --bs-cyan: #00ffd1;
+  --bs-magenta: #ff4d8d;
+  --bs-bg: #07080b;
+  --bs-panel: #0b0d12;
+  --bs-line: rgba(0, 255, 209, 0.22);
+  --bs-dim: #5f6d7a;
+  --bs-text: #d7e2ea;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 3px),
+    radial-gradient(90% 50% at 100% 0%, rgba(0, 255, 209, 0.06), transparent 60%),
+    var(--bs-bg);
+  color: var(--bs-text);
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, "Microsoft YaHei", monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 22px 18px 30px;
+}
+
+/* 头部 */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.logo {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--bs-cyan);
+  border-radius: 2px;
+  color: var(--bs-cyan);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.title {
+  flex: 1;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #e8f6f2;
+}
+
+.ver {
+  font-size: 11px;
+  color: var(--bs-dim);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4a5560;
+}
+
+.dot.ok {
+  background: var(--bs-cyan);
+  box-shadow: 0 0 9px rgba(0, 255, 209, 0.9);
+}
+
+.dot.err {
+  background: var(--bs-magenta);
+  box-shadow: 0 0 9px rgba(255, 77, 141, 0.9);
+}
+
+.engine {
+  margin: 10px 0 2px;
+  font-size: 11.5px;
+  color: var(--bs-dim);
+  word-break: break-word;
+}
+
+/* 卡片 */
+.card {
+  margin-top: 12px;
+  padding: 12px 14px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #e6f4f1;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 1px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: var(--bs-dim);
+  white-space: nowrap;
+}
+
+.tag.on {
+  border-color: var(--bs-cyan);
+  color: var(--bs-cyan);
+  background: rgba(0, 255, 209, 0.1);
+}
+
+.tag.err {
+  border-color: var(--bs-magenta);
+  color: var(--bs-magenta);
+  background: rgba(255, 77, 141, 0.1);
+}
+
+.desc,
+.note {
+  margin: 6px 0 10px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: #7d8a96;
+}
+
+.note {
+  margin: 8px 0 0;
+  color: #5b6874;
+}
+
+code {
+  color: #9fd8cc;
+  background: rgba(0, 255, 209, 0.07);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+/* 模型列表 */
+.models {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.model-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.model-row.missing {
+  opacity: 0.45;
+}
+
+.model-name {
+  flex: 1;
+  font-size: 11.5px;
+  color: #dbe9e5;
+}
+
+.model-role {
+  font-size: 10px;
+  color: var(--bs-dim);
+  letter-spacing: 1px;
+  min-width: 84px;
+  text-align: right;
+}
+
+.model-state {
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 1px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: var(--bs-dim);
+  min-width: 56px;
+  text-align: center;
+}
+
+.model-state.ok {
+  border-color: rgba(0, 255, 209, 0.55);
+  color: var(--bs-cyan);
+}
+
+/* 自检 */
+.diag {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.diag-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 10px;
+  border-left: 2px solid rgba(0, 255, 209, 0.45);
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+}
+
+.diag-row.bad {
+  border-left-color: var(--bs-magenta);
+}
+
+.diag-name {
+  min-width: 92px;
+  color: #a9b6c1;
+}
+
+.diag-ms {
+  min-width: 64px;
+  color: var(--bs-dim);
+}
+
+.diag-text {
+  flex: 1;
+  color: #dbe9e5;
+  word-break: break-word;
+}
+
+.diag-row.bad .diag-text {
+  color: #ff9fbe;
+}
+
+/* 表单 */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.sub-label {
+  width: 56px;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  color: var(--bs-dim);
+  text-transform: uppercase;
+}
+
+select,
+input[type="text"],
+input[type="password"] {
+  flex: 1;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  background: #0d1016;
+  color: var(--bs-text);
+  font-family: inherit;
+  font-size: 11.5px;
+  outline: none;
+}
+
+select:focus,
+input:focus {
+  border-color: var(--bs-cyan);
+}
+
+.api {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0 10px 66px;
+}
+
+.api input {
+  width: 100%;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #9aa8b4;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--bs-cyan);
+}
+
+/* 按钮 */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.primary,
+.ghost {
+  height: 32px;
+  padding: 0 18px;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+}
+
+.primary {
+  border: 1px solid var(--bs-cyan);
+  background: rgba(0, 255, 209, 0.12);
+  color: var(--bs-cyan);
+}
+
+.primary:hover {
+  background: rgba(0, 255, 209, 0.22);
+  box-shadow: 0 0 14px rgba(0, 255, 209, 0.32);
+}
+
+.ghost {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #a9b6c1;
+}
+
+.ghost:hover {
+  border-color: var(--bs-cyan);
+  color: var(--bs-cyan);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.result {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #9fd8cc;
+}
+
+.path {
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  color: #b9c7d2;
+  word-break: break-all;
+}
+
+footer {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 10px;
+  color: #46525d;
+  letter-spacing: 0.5px;
+}

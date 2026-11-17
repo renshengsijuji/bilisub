@@ -1,0 +1,22 @@
+# 依赖与模型（体积大，仓库不包含，安装脚本会下载）
+models/
+engine/.venv/
+__pycache__/
+engine/__pycache__/
+*.pyc
+
+# 本机配置（含绝对路径与 API Key）
+engine/config.json
+
+# 运行日志与测试产物
+*.log
+*.log.err
+tools/*.png
+tools/*.wav
+.edge-*/
+.pipcache/
+
+# 系统文件
+Thumbs.db
+desktop.ini
+.DS_Store

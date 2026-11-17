@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BiliSub 使用说明</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+        background: #12141a;
+        color: #e7eaf0;
+        font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+        line-height: 1.75;
+        font-size: 15px;
+      }
+      h1 {
+        font-size: 24px;
+        margin: 0 0 6px;
+      }
+      .sub {
+        color: #8b93a3;
+        margin-bottom: 24px;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 32px 0 10px;
+        padding-left: 10px;
+        border-left: 3px solid #6c8cff;
+      }
+      ol,
+      ul {
+        padding-left: 22px;
+      }
+      li {
+        margin: 6px 0;
+      }
+      code {
+        background: #1e222c;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      img {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #242833;
+        margin: 12px 0;
+      }
+      .tip {
+        background: rgba(108, 140, 255, 0.1);
+        border: 1px solid rgba(108, 140, 255, 0.3);
+        padding: 10px 14px;
+        border-radius: 10px;
+        margin: 14px 0;
+        font-size: 14px;
+      }
+      .warn {
+        background: rgba(255, 176, 32, 0.08);
+        border: 1px solid rgba(255, 176, 32, 0.3);
+        padding: 10px 14px;
+        border-radius: 10px;
+        margin: 14px 0;
+        font-size: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      th,
+      td {
+        border: 1px solid #242833;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      th {
+        background: #1a1e27;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BiliSub 双语字幕 · 使用说明</h1>
+    <div class="sub">本地模型翻译，音频与字幕不出本机</div>
+
+    <img src="screenshot.png" alt="BiliSub 截图" />
+
+    <h2>一、安装</h2>
+    <ol>
+      <li>双击 <code>install.cmd</code>，等待脚本装完（首次约 2–5 分钟）。</li>
+      <li>浏览器会自动打开 <code>edge://extensions</code>。</li>
+      <li>打开右上角「开发人员模式」。</li>
+      <li>点「加载解压缩的扩展」，选择本目录下的 <code>extension</code> 文件夹（路径已复制到剪贴板，可直接粘贴）。</li>
+      <li>点扩展图标 →「引擎与模型设置」→ 点「安装」下载推荐模型。</li>
+    </ol>
+    <div class="tip">引擎会随开机自动启动。如果提示“未连接”，双击 <code>start-engine.cmd</code> 即可。</div>
+
+    <h2>二、日常使用</h2>
+    <ol>
+      <li>打开视频页面（YouTube、B 站或其他网站）。</li>
+      <li>点右下角蓝色「译」按钮。</li>
+      <li>选择模式：
+        <ul>
+          <li><b>字幕翻译</b>：读取视频自带的字幕并翻译，速度最快、质量最好。</li>
+          <li><b>原声识别</b>：抓当前标签页的声音做识别，适合没有字幕的视频。</li>
+        </ul>
+      </li>
+      <li>点「开始」，字幕会显示在画面下方。</li>
+    </ol>
+
+    <div class="warn">
+      原声识别需要点一次扩展图标（或按 <b>Alt+Shift+S</b>）。这是浏览器的安全限制：抓取标签页声音必须由用户主动触发。
+    </div>
+
+    <h2>三、浮层设置</h2>
+    <table>
+      <tr><th>选项</th><th>说明</th></tr>
+      <tr><td>显示</td><td>双语 / 仅译文 / 仅原文</td></tr>
+      <tr><td>字号</td><td>按视频高度自动缩放，可手动加减</td></tr>
+      <tr><td>隐藏原字幕</td><td>开启后自动隐藏页面自带字幕，避免重叠</td></tr>
+    </table>
+
+    <h2>四、模型目录与自定义模型</h2>
+    <p>模型随安装包预装，<b>插件里不再提供下载或改目录</b>。设置页只显示已安装模型，并提供「模型自检」。</p>
+
+    <h3>更换模型目录</h3>
+    <ol>
+      <li>编辑 <code>engine\config.json</code> 里的 <code>models_dir</code>（例如 <code>"E:\\AI\\BiliSub\\models"</code>）</li>
+      <li>把现有模型文件夹整体移动到新目录</li>
+      <li>重启引擎（重新运行 <code>start-engine.cmd</code>）</li>
+    </ol>
+
+    <h3>添加其它模型</h3>
+    <ul>
+      <li><b>Ollama 模型</b>：先执行 <code>ollama pull qwen2.5:7b</code>，再在插件设置页「翻译引擎」下拉里直接选，重启无需操作。</li>
+      <li><b>CT2 模型</b>：把模型文件放进 <code>models\&lt;模型id&gt;\</code>，并在 <code>engine\catalog.json</code> 里加一条（<code>id / kind / files</code>），重启引擎后即可在设置页选中。</li>
+      <li>是否需要下载功能由安装包侧决定；插件本身保持“只读已安装模型”的轻量设计。</li>
+    </ul>
+
+    <h2>五、常见问题</h2>
+    <ul>
+      <li><b>提示本地引擎未连接</b>：运行 <code>start-engine.cmd</code>；或看端口 8765 是否被占用。</li>
+      <li><b>翻译很慢</b>：第一次要加载模型，稍等几秒；也可在设置页把高质量模型换成 OPUS。</li>
+      <li><b>没有字幕</b>：换「听声」模式，或确认视频本身有 CC 字幕。</li>
+      <li><b>听声没反应</b>：浏览器要求先“调用扩展”，点一次工具栏图标或按快捷键。</li>
+      <li><b>Netflix 等平台没反应</b>：DRM 内容无法抓取，属于平台限制。</li>
+      <li><b>画中画里没有字幕</b>：PiP 是独立窗口，浏览器不允许扩展绘制。</li>
+    </ul>
+
+    <h2>六、卸载</h2>
+    <ol>
+      <li>运行 <code>uninstall.ps1</code>（会移除开机自启，可选删除模型）。</li>
+      <li>到 <code>edge://extensions</code> 手动移除扩展。</li>
+    </ol>
+
+    <p class="sub" style="margin-top: 32px">BiliSub v0.1.0 · 仅供个人学习使用</p>
+  </body>
+</html>

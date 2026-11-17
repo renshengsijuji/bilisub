@@ -1,0 +1,239 @@
+/*! BiliSub 工具栏弹窗 · 与字幕控制台同一套复古未来风 */
+
+:root {
+  --bs-cyan: #00ffd1;
+  --bs-magenta: #ff4d8d;
+  --bs-bg: #07080b;
+  --bs-panel: #0b0d12;
+  --bs-line: rgba(0, 255, 209, 0.22);
+  --bs-dim: #5f6d7a;
+  --bs-text: #d7e2ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  background:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 60% at 100% 0%, rgba(0, 255, 209, 0.07), transparent 60%),
+    var(--bs-bg);
+  color: var(--bs-text);
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, "Microsoft YaHei", monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.wrap {
+  padding: 12px;
+}
+
+/* 头部 */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--bs-cyan);
+  border-radius: 2px;
+  color: var(--bs-cyan);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.title {
+  flex: 1;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #e8f6f2;
+}
+
+.ver {
+  font-size: 10px;
+  color: var(--bs-dim);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a5560;
+}
+
+.dot.ok {
+  background: var(--bs-cyan);
+  box-shadow: 0 0 8px rgba(0, 255, 209, 0.9);
+}
+
+.dot.err {
+  background: var(--bs-magenta);
+  box-shadow: 0 0 8px rgba(255, 77, 141, 0.9);
+}
+
+.engine {
+  margin: 8px 0 2px;
+  font-size: 10.5px;
+  color: var(--bs-dim);
+  word-break: break-word;
+}
+
+/* 卡片 */
+.card {
+  margin-top: 9px;
+  padding: 9px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-title {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #e6f4f1;
+}
+
+.tag {
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  padding: 1px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  color: var(--bs-dim);
+  white-space: nowrap;
+}
+
+.tag.on {
+  border-color: var(--bs-cyan);
+  color: var(--bs-cyan);
+  background: rgba(0, 255, 209, 0.1);
+}
+
+.desc {
+  margin: 6px 0 8px;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: #8d99a5;
+}
+
+.note {
+  margin: 6px 0 0;
+  font-size: 9.5px;
+  line-height: 1.5;
+  color: #56636f;
+}
+
+/* 按钮 */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.primary,
+.ghost {
+  width: 100%;
+  height: 30px;
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+}
+
+.primary {
+  border: 1px solid var(--bs-cyan);
+  background: rgba(0, 255, 209, 0.12);
+  color: var(--bs-cyan);
+}
+
+.primary:hover {
+  background: rgba(0, 255, 209, 0.22);
+  box-shadow: 0 0 14px rgba(0, 255, 209, 0.35);
+}
+
+.primary.is-on {
+  border-color: var(--bs-magenta);
+  background: rgba(255, 77, 141, 0.12);
+  color: var(--bs-magenta);
+}
+
+.primary.is-on:hover {
+  background: rgba(255, 77, 141, 0.2);
+  box-shadow: 0 0 14px rgba(255, 77, 141, 0.3);
+}
+
+.ghost {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: #a9b6c1;
+}
+
+.ghost:hover {
+  border-color: var(--bs-cyan);
+  color: var(--bs-cyan);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 底部 */
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.link {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #6e8f8a;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+}
+
+.link:hover {
+  color: var(--bs-cyan);
+  text-decoration: underline;
+}
+
+.kbd {
+  font-size: 9.5px;
+  color: #4d5a66;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  padding: 1px 5px;
+}
+
+footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 9.5px;
+  color: #46525d;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mt-opus-en-zh",
+    "kind": "mt",
+    "name": "OPUS-MT 英→中（轻量）",
+    "repo": "Zoowr/opus-mt-en-zh-ct2-int8",
+    "files": [
+      "model.bin",
+      "config.json",
+      "source.spm",
+      "target.spm",
+      "shared_vocabulary.json",
+      "vocab.json"
+    ],
+    "approxSize": 80000000,
+    "langs": {
+      "src": [
+        "en"
+      ],
+      "tgt": [
+        "zh"
+      ]
+    },
+    "tier": "light",
+    "note": "体积最小、速度最快，适合实时字幕；译文偏直译"
+  },
+  {
+    "id": "asr-whisper-small",
+    "kind": "asr",
+    "name": "Whisper small（定稿识别）",
+    "repo": "Systran/faster-whisper-small",
+    "files": [
+      "model.bin",
+      "config.json",
+      "tokenizer.json",
+      "vocabulary.txt"
+    ],
+    "approxSize": 480000000,
+    "tier": "standard",
+    "note": "比 tiny 更准，用于听声的定稿句"
+  },
+  {
+    "id": "asr-distil-small-en",
+    "kind": "asr",
+    "name": "Distil-Whisper small.en（快速定稿）",
+    "repo": "Systran/faster-distil-whisper-small.en",
+    "files": [
+      "model.bin",
+      "config.json",
+      "preprocessor_config.json",
+      "tokenizer.json",
+      "vocabulary.json"
+    ],
+    "approxSize": 336000000,
+    "tier": "standard",
+    "note": "英文专用，速度约为 small 的 2 倍，用于听声定稿"
+  }
+]

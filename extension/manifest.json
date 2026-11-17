@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "BiliSub 双语字幕",
+  "version": "0.2.9",
+  "description": "本地模型驱动的双语字幕：智能/字幕/听声三种模式，多语言翻译，支持 Ollama GPU 加速。",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "tabCapture",
+    "offscreen",
+    "activeTab",
+    "scripting",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "css": [
+        "content/overlay.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "BiliSub 双语字幕"
+  },
+  "options_page": "options/options.html",
+  "commands": {
+    "toggle-capture": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L"
+      },
+      "description": "开始/停止听声翻译（抓取当前标签页声音）"
+    }
+  }
+}
